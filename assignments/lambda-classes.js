@@ -33,6 +33,14 @@ class Instructor extends Person{
     grade(name, subject){
         return `${name} receives a perfect score on ${subject}`
     }
+
+    randomegrade(student){
+        return Math.ceil(Math.random(student.grade) * 100);
+    }
+
+    meangrade(student, instructor){
+        return `${student.name}'s old grade was ${student.grade}. ${student.name}'s new grade is ${instructor.randomegrade(Student)}`
+    }
 }
 
 
@@ -43,6 +51,7 @@ class Student extends Person{
         this.previousBackground = studFacts.previousBackground;
         this.className = studFacts.className;
         this.favSubjects = studFacts.favSubjects;
+        this.grade = studFacts.grade;
     }
 
     listsSubjects(){
@@ -56,7 +65,20 @@ class Student extends Person{
     sprintChallenge(subject){
         return `${Student.name} has begun sprint challenge on ${subject}`;
     }
+
+    graduate(student, instructor){
+        if(instructor.randomegrade(student) > 70) {
+            return `${student.name} can graduate!`;
+        } 
+        
+        else {
+            this.graduate(student, instructor);
+        }
+    }
+
 }
+
+
 
 
 
@@ -113,17 +135,19 @@ const Erin = new Instructor({
 
 //student
 const billy = new Student({
-    name : 'billy',
+    name : 'billy bob',
     previousBackground : 'Architecture',
     className : 'CS404',
-    favSubjects : ['Html', 'CSS']
+    favSubjects : ['Html', 'CSS'],
+    grade : 22,
 })
 
 const alexa = new Student({
     name : 'alexa',
     previousBackground : 'Chef',
     className : 'CS1201',
-    favSubjects : ['C#', 'Javascript', 'Python']
+    favSubjects : ['C#', 'Javascript', 'Python'],
+    
 })
 
 
@@ -153,3 +177,5 @@ console.log(billy.listsSubjects());
 console.log(alexa.PRAssignment('Music'));
 console.log(BrandonSandon.standup('BrandonSandon', 'MainChannel'));
 console.log(Spiderman.debugsCode(billy,'art'));
+console.log(Julio.meangrade(billy, Julio));
+console.log(billy.graduate(billy, Julio));
