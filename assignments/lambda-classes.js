@@ -66,21 +66,15 @@ class Student extends Person{
         return `${Student.name} has begun sprint challenge on ${subject}`;
     }
 
-    graduate(student, instructor){
-        if(instructor.randomegrade(student) > 70) {
-            return `${student.name} can graduate!`;
-        } 
-        
+    graduate(instructor){
+        if(instructor.randomegrade(this) > 70) {
+            return `${this.name} can graduate!`;
+        }        
         else {
-            this.graduate(student, instructor);
+            return this.graduate(instructor);
         }
     }
-
 }
-
-
-
-
 
 //project manager  extend-> of instrcutor
 
@@ -178,4 +172,4 @@ console.log(alexa.PRAssignment('Music'));
 console.log(BrandonSandon.standup('BrandonSandon', 'MainChannel'));
 console.log(Spiderman.debugsCode(billy,'art'));
 console.log(Julio.meangrade(billy, Julio));
-console.log(billy.graduate(billy, Julio));
+console.log(billy.graduate(Julio));
